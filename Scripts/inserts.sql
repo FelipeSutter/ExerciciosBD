@@ -11,4 +11,15 @@ values
 	('S. Sudarshan', '19671011'),
 	('Peter Baer Galvin', '19600923'),
 	('Greg Gagne', '19750415');
+
+-- Insert da tabela genero
+
+insert into genero (descricao) 
+values
+	('Romance'),
+	('Ficção'),
+	('Drama'),
+	('Suspense'),
+	('Infanto-Juvenil'),
+	('Técnico');
 	
