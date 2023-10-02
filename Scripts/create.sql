@@ -48,6 +48,7 @@ create table itemVenda(
 	id_itemVenda int primary key auto_increment not null,
 	id_venda int,
 	id_livro int,
+	quantidade int,
 	foreign key (id_venda) references venda(id_venda),
 	foreign key (id_livro) references livro(id_livro)
 );

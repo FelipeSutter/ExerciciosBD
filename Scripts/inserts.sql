@@ -40,4 +40,78 @@ values
 	(908, 'Sistema de Banco de Dados', '86.50' ,15, 'Elsevier', 6),
 	(775, 'Fundamentos de Sistemas Operacionais', '130.15' ,25, 'LTC', 6);
 	
+
+-- Insert da tabela escreve
+
+INSERT INTO escreve (id_autor, id_livro) 
+VALUES
+	(3, 135), 
+	(3, 234), 
+	(3, 345), 
+	(4, 421), 
+	(4, 567), 
+	(4, 236), 
+	(1, 622), 
+	(2, 715),
+	(5, 368), 
+	(6, 368), 
+	(7, 368), 
+	(5, 123), 
+	(8, 123), 
+	(9, 123), 
+	(5, 908), 
+	(6, 908),
+	(7, 908), 
+	(5, 775), 
+	(8, 775), 
+	(9, 775);
+
+-- Insert da tabela cliente
+
+INSERT INTO cliente (id_cliente, nome_cliente, data_nasc_cliente, email_cliente, telefone) 
+VALUES
+	(1, 'Ana Souza', '1972-06-10', 'anass@uul.com.br', '24932321178'),
+	(2, 'Camila Silva', '1982-10-31', 'csilva@doc.com.br', '24923234455'),
+	(3, 'Paulo Matos', '1967-08-24', NULL, '24933115678'),
+	(4, 'Vicente Castro', '1975-12-05', NULL, NULL),
+	(5, 'Viviane Batista', '1995-08-15', NULL, '24944221234'),
+	(6, 'Cinthia Silva', '1998-05-27', 'cinthia_s@dcc.br', NULL),
+	(7, 'Mateus Nunes', '1994-04-04', NULL, '24922235678');
+
+-- Insert da tabela venda
+
+INSERT INTO venda (id_venda, data_venda, id_cliente) 
+VALUES
+	(1, '2014-06-23', 4),
+	(2, '2014-07-05', 2),
+	(3, '2014-08-10', 3),
+	(4, '2014-08-20', 1),
+	(5, '2014-08-23', 7),
+	(6, '2014-09-02', 5),
+	(7, '2014-09-11', 6),
+	(8, '2014-09-11', 3),
+	(9, '2014-09-20', 7);
+
+-- Insert da tabela itemVenda
+
+INSERT INTO itemVenda (id_venda, id_livro, quantidade) 
+VALUES
+	(1, 135, 1),
+	(1, 234, 2),
+	(2, 345, 1),
+	(3, 622, 2),
+	(4, 715, 3),
+	(5, 368, 1),
+	(5, 123, 1),
+	(5, 908, 1),
+	(6, 908, 1),
+	(6, 775, 2),
+	(7, 135, 2),
+	(7, 421, 1),
+	(7, 123, 1),
+	(7, 368, 1),
+	(8, 421, 1),
+	(9, 135, 1),
+	(9, 715, 1);
+
 	
