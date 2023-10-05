@@ -150,7 +150,7 @@ inner join itemvenda i on
 	v.id_venda = i.id_venda 
 inner join livro l on
 	i.id_livro = l.id_livro 
-where l.preco_livro = (select max(preco_livro) from livro);
+where l.preco_livro = (select max(preco_livro) from livro)
 group by c.id_cliente;
 
 -- 11. Qual autor tem o livro mais barato?
@@ -193,10 +193,66 @@ where l.editora like 'Rocco';
 -- 15. Qual o cliente, titulo do livro e autor da venda mais antiga?
 
 select 
-	
+	c.nome_cliente , l.titulo_livro, a.nome_autor, v.data_venda 
 from cliente c 
-inner join 
+inner join venda v on
+	c.id_cliente = v.id_cliente
+inner join itemvenda i on
+	v.id_venda = i.id_venda 
+inner join livro l on
+	i.id_livro = l.id_livro 
+inner join escreve e on
+	l.id_livro = e.id_livro 
+inner join autor a on
+	e.id_autor = a.id_autor 
+where v.data_venda = (select min(data_venda) from venda);
 
+-- 16. Encontre o total de livros vendidos por gênero que tem em estoque. (by Breno)
+
+select 
+	sum(i.quantidade),g.descricao, l.estoque
+from genero g 
+inner join livro l on
+	g.id_genero = l.id_genero 
+inner join itemvenda i on
+	l.id_livro = i.id_livro 
+where l.estoque > 0
+group by g.id_genero;
+
+
+-- 17. Encontre quantos clientes compraram cada livro que tenha preço maior que 50,00.
+
+select
+	count(c.id_cliente), c.nome_cliente, l.titulo_livro, l.preco_livro 
+from cliente c 
+inner join venda v on
+	c.id_cliente = v.id_cliente 
+inner join itemvenda i on
+	v.id_venda = i.id_venda 
+inner join livro l on
+	i.id_livro = l.id_livro
+where l.preco_livro > 50
+group by l.id_livro;
+-- cada livro
+
+-- 18. Encontre quantos livros cada cliente comprou dos autores “Abraham Silberschatz”. 
+-- Mostre o cliente mesmo que ele não tenha comprado nenhum livro destes autores.
+
+select 
+	 c.nome_cliente, l.titulo_livro, count(l.id_livro)
+from cliente c 
+left join venda v on
+	c.id_cliente = v.id_cliente
+inner join itemvenda i on
+	v.id_venda = i.id_venda 
+inner join livro l on
+	i.id_livro = l.id_livro 
+inner join escreve e on
+	l.id_livro = e.id_livro 
+inner join autor a on
+	e.id_autor = a.id_autor
+where a.nome_autor like 'Abraham Silberschatz'
+group by c.id_cliente;
 
 
 
