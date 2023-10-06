@@ -254,5 +254,38 @@ inner join autor a on
 where a.nome_autor like 'Abraham Silberschatz'
 group by c.id_cliente;
 
+-- alterar valor
 
+UPDATE film
+SET rental_rate = rental_rate + 1.00
+WHERE film_id IN (
+    SELECT f.film_id
+    FROM film f
+    INNER JOIN inventory i ON f.film_id = i.film_id
+    INNER JOIN rental r ON i.inventory_id = r.inventory_id
+    WHERE r.return_date > r.rental_date
+);
 
+-- cliente até film msm sem ter alugado
+
+select 
+	concat(c.first_name, ' ', c.last_name) as "Cliente", f.film_id 
+from customer c 
+left join rental r on
+	c.customer_id = r.customer_id 
+inner join inventory i on
+	r.inventory_id = i.inventory_id
+inner join film f on
+	i.film_id = f.film_id
+group by c.customer_id, f.film_id ;
+
+-- mostrar null alugados
+
+select 
+	f.title, count(r.rental_id)
+from film f 
+inner join inventory i on
+	f.film_id = i.film_id 
+right join rental r on
+	i.inventory_id = r.inventory_id
+group by f.film_id;
