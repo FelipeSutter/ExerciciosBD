@@ -78,7 +78,7 @@ inner join inventory i on
 inner join rental r on
 	i.inventory_id = r.inventory_id
 group by f.film_id
-having f.rental_rate < 2.00 and count(r.rental_id) >= 50
+having f.rental_rate < 1.00 and count(r.rental_id) >= 50
 
 -- as duas cláusulas eram no having, pois as duas pertenciam ao film
 
